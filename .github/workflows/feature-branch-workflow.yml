@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: FEAT
+    environment: dev
 
     steps:
       - name: Checkout code
@@ -33,18 +33,18 @@ jobs:
       
       - name: Show env variables
         run: |
-          echo "MONGO_USERNAME: ${{ env.MONGO_USERNAME }}"
-          echo "MONGO_PASSWORD: ${{ env.MONGO_PASSWORD }}"
-          echo "MONGO_HOST: ${{ env.MONGO_HOST }}"
-          echo "MONGO_DATABASE: ${{ env.MONGO_DATABASE }}"
+          echo "MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}"
+          echo "MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}"
+          echo "MONGO_HOST: ${{ secrets.MONGO_HOST }}"
+          echo "MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}"
 
       - name: Run tests
         run: mvn test
         env:
-          MONGO_USERNAME: ${{ env.MONGO_USERNAME }}
-          MONGO_PASSWORD: ${{ env.MONGO_PASSWORD }}
-          MONGO_HOST: ${{ env.MONGO_HOST }}
-          MONGO_DATABASE: ${{ env.MONGO_DATABASE }}
+          MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}
+          MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+          MONGO_HOST: ${{ secrets.MONGO_HOST }}
+          MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
 
       - name: Create Pull Request
         if: success()
