@@ -39,6 +39,11 @@ jobs:
 
       - name: Run tests
         run: mvn test
+        env:
+          MONGO_USERNAME: ${{ env.MONGO_USERNAME }}
+          MONGO_PASSWORD: ${{ env.MONGO_PASSWORD }}
+          MONGO_HOST: ${{ env.MONGO_HOST }}
+          MONGO_DATABASE: ${{ env.MONGO_DATABASE }}
 
       - name: Create Pull Request
         if: success()
