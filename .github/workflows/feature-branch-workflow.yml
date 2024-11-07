@@ -30,6 +30,13 @@ jobs:
 
       - name: Install dependencies
         run: mvn install -DskipTests
+      
+      - name: Show env variables
+        run: |
+          echo "MONGO_USERNAME: ${{ env.MONGO_USERNAME }}"
+          echo "MONGO_PASSWORD: ${{ env.MONGO_PASSWORD }}"
+          echo "MONGO_HOST: ${{ env.MONGO_HOST }}"
+          echo "MONGO_DATABASE: ${{ env.MONGO_DATABASE }}"
 
       - name: Run tests
         run: mvn test
