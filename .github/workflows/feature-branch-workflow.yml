@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: FEAT
 
     steps:
       - name: Checkout code
@@ -26,13 +27,6 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-
-      - name: Set environment variables
-        run: |
-          echo "MONGO_USERNAME=${{ env.MONGO_USERNAME }}" >> $GITHUB_ENV
-          echo "MONGO_PASSWORD=${{ env.MONGO_PASSWORD }}" >> $GITHUB_ENV
-          echo "MONGO_HOST=${{ env.MONGO_HOST }}" >> $GITHUB_ENV
-          echo "MONGO_DATABASE=${{ env.MONGO_DATABASE }}" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: mvn install -DskipTests
