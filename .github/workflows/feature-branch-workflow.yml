@@ -46,6 +46,10 @@ jobs:
           MONGO_HOST: ${{ secrets.MONGO_HOST }}
           MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
 
+      - name: Get version from pom.xml
+        id: get_version
+        run: echo "VERSION=$(xmllint --xpath '/*[local-name()="project"]/*[local-name()="version"]/text()' pom.xml)" >> $GITHUB_ENV
+
       - name: Create Pull Request
         if: success()
         uses: peter-evans/create-pull-request@v7
@@ -56,3 +60,16 @@ jobs:
           title: 'Automated PR: Merging feature branch into master'
           body: 'This PR is automatically created by GitHub Actions to merge changes from the feature branch into master.'
           labels: 'automated-pr'
+      
+      - name: Create Release
+        if: success()
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: Release v${{ env.VERSION }}
+          body: |
+            This is an automated release.
+          draft: false
+          prerelease: false
