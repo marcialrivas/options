@@ -14,10 +14,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.ishells.options.model.AssetsData;
 import com.ishells.options.model.StockMarketData;
 import com.ishells.options.repository.StockMarketDataRepository;
-import com.ishells.options.service.StockMarketDataService;
 
 @ExtendWith(MockitoExtension.class)
 public class StockMarketDataServiceTest {
