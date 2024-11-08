@@ -37,6 +37,9 @@ jobs:
           echo "MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}"
           echo "MONGO_HOST: ${{ secrets.MONGO_HOST }}"
           echo "MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}"
+          echo "ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}"
+          echo "ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}"
+          echo "ALPACA_BASE_URL: ${{ secrets.ALPACA_BASE_URL }}"
 
       - name: Run tests
         run: mvn test
@@ -45,6 +48,9 @@ jobs:
           MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
           MONGO_HOST: ${{ secrets.MONGO_HOST }}
           MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
+          ALPACA_BASE_URL: ${{ secrets.ALPACA_BASE_URL }}
 
       - name: Install xmllint
         run: sudo apt-get update && sudo apt-get install -y libxml2-utils
