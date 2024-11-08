@@ -8,7 +8,6 @@ public class AlpacaAsset {
     private String symbol;
     private String name;
     private String exchange;
-    private String assetClass;
     private String status;
     private boolean tradable;
     private boolean marginable;

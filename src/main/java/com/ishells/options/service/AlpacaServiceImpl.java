@@ -9,6 +9,7 @@ import com.ishells.options.configuration.AlpacaConfig;
 import com.ishells.options.model.AlpacaAsset;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AlpacaServiceImpl implements AlpacaService {
@@ -31,6 +32,14 @@ public class AlpacaServiceImpl implements AlpacaService {
                 .retrieve()
                 .bodyToFlux(AlpacaAsset.class)
                 .collectList()
-                .block();
+                .block()
+                .stream()
+                .filter(asset -> 
+                    asset.getStatus().equals("active") &&
+                    asset.isTradable() &&
+                    asset.getExchange().equals("NASDAQ") &&
+                    asset.isMarginable()
+                )
+                .collect(Collectors.toList());
     }
 }
