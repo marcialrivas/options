@@ -40,6 +40,7 @@ jobs:
           echo "ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}"
           echo "ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}"
           echo "ALPACA_BASE_URL: ${{ secrets.ALPACA_BASE_URL }}"
+          echo "ALPACA_DATA_URL" ${{ secrets.ALPACA_DATA_URL }}
 
       - name: Run tests
         run: mvn test
@@ -51,6 +52,7 @@ jobs:
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
           ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
           ALPACA_BASE_URL: ${{ secrets.ALPACA_BASE_URL }}
+          ALPACA_DATA_URL: ${{ secrets.ALPACA_DATA_URL }}
 
       - name: Install xmllint
         run: sudo apt-get update && sudo apt-get install -y libxml2-utils
