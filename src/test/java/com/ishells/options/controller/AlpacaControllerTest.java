@@ -20,12 +20,17 @@ public class AlpacaControllerTest {
 
     @Test
     public void testGetAssetsFromAlpaca() throws Exception {
-        // Assuming AlpacaController fetches data from Alpaca API and saves it to the repository
-        // Here we are just testing the endpoint response
-
         // Perform the request to the endpoint
         mockMvc.perform(get("/alpaca/assets"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("_embedded.alpacaAssets.length()", greaterThan(0))); // Assuming the response is a list of assets
+    }
+
+    @Test
+    public void testGetOpenPositionsFromAlpaca() throws Exception {
+        // Perform the request to the endpoint
+        mockMvc.perform(get("/alpaca/positions"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("_embedded.alpacaPositions.length()", greaterThan(0))); // Assuming the response is a list of positions
     }
 }

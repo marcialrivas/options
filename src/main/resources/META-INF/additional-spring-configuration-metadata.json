@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "alpaca.secret-key",
+    "type": "java.lang.String",
+    "description": "The Alpaca API secret key 'alpaca.secret-key'"
+  },
+  {
+    "name": "alpaca.base-url",
+    "type": "java.lang.String",
+    "description": "The Alpaca base endpoint 'alpaca.base-url'"
+  },
+  {
+    "name": "alpaca.api-key",
+    "type": "java.lang.String",
+    "description": "The Alpaca API key 'alpaca.api-key'"
+  },
+  {
+    "name": "alpaca.data-url",
+    "type": "java.lang.String",
+    "description": "The Alpaca data endpoint 'alpaca.data-url'"
+  }
+]}

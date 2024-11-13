@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ishells.options.service.AlpacaService;
 import com.ishells.options.model.AlpacaAsset;
+import com.ishells.options.model.AlpacaPosition;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,5 +36,16 @@ public class AlpacaController {
 
         return CollectionModel.of(alpacaAssetsList, 
                 linkTo(methodOn(AlpacaController.class).getAlpacaAsset()).withSelfRel());
+    }
+
+    @GetMapping("/alpaca/positions")
+    public CollectionModel<EntityModel<AlpacaPosition>> getOpenPositions() {
+        List<EntityModel<AlpacaPosition>> alpacaPositionsList = alpacaService.getOpenPositions().stream()
+                .map(data -> EntityModel.of(data,
+                        linkTo(methodOn(AlpacaController.class).getOpenPositions()).withSelfRel()))
+                .collect(Collectors.toList());
+
+        return CollectionModel.of(alpacaPositionsList, 
+                linkTo(methodOn(AlpacaController.class).getOpenPositions()).withSelfRel());
     }
 }
